@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">GuestProfile</string>
+    <string name="tmNo">TM No.</string>
+    <string name="hint_tmno">Enter TM number here</string>
+    <string name="passportNo">Passport No.</string>
+    <string name="hint_passport">Enter passport number here</string>
+    <string name="personNo">Personal No.</string>
+    <string name="hint_person">Enter personal number here</string>
+    <string name="title_name">Title Name</string>
+    <string name="hint_title">Enter title name here</string>
+    <string name="First_name">First Name</string>
+    <string name="hint_firstname">Enter first name here</string>
+    <string name="middle_Name">Middle Name</string>
+    <string name="hint_middlename">Enter middle name here</string>
+    <string name="last_name">Last Name</string>
+    <string name="hint_lastname">Enter last name here</string>
+    <string name="gender">Gender</string>
+    <string name="hint_gender">Enter gender here</string>
+    <string name="DOB">Date of Birth</string>
+    <string name="hint_dob">Enter date of birth here</string>
+    <string name="DOE">Date of Expire</string>
+    <string name="hint_doe">Enter date of expire here</string>
+    <string name="nationality">Nationality</string>
+    <string name="hint_nationality">Enter Nationality here</string>
+    <string name="address">Address</string>
+    <string name="hint_address">Enter address here</string>
+    <string name="occupation">Occupation</string>
+    <string name="hint_occupation">Enter occupation here</string>
+    <string name="next">next</string>
+    <string name="read">READ</string>
+
+    <string name="reading">กำลังอ่านบัตร</string>
+    <string name="do_not_eject">กรุณาอย่านำบัตรออกจนกว่าจะอ่านเสร็จ</string>
+    <string name="submit">submit</string>
+    <string name="cancle">cancle</string>
+</resources>
