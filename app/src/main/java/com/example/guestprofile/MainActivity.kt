@@ -12,24 +12,21 @@ import android.app.PendingIntent
 import android.app.ProgressDialog
 import android.content.*
 import android.content.res.AssetManager
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.hardware.usb.UsbDevice
 import android.hardware.usb.UsbManager
-import android.os.AsyncTask
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.os.Parcelable
-import android.os.StrictMode
+import android.os.*
 import android.util.Base64
 import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.afollestad.materialdialogs.LayoutMode
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.bottomsheets.BottomSheet
 import com.afollestad.materialdialogs.list.listItems
+import com.example.guestprofile.Data.Countries
 import com.example.guestprofile.databinding.ActivityMainBinding
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -41,12 +38,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.io.ByteArrayOutputStream
-import java.io.File
-import java.io.FileOutputStream
-import java.io.UnsupportedEncodingException
+import java.io.*
+import java.nio.charset.Charset
 import java.util.*
 import kotlin.experimental.or
+
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -72,13 +68,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityMainBinding
 
+    private var countriesList: ArrayList<Countries> = arrayListOf()
+
     companion object {
         private const val TAG = "Alcor-Test"
         private const val ACTION_USB_PERMISSION = "com.android.example.USB_PERMISSION"
         const val MULTIPLE_PERMISSIONS = 100
         private val hexArray = "0123456789ABCDEF".toCharArray()
 
-        val titlenameList =  listOf<String>(
+        val titlenameList = listOf<String>(
             "นางสาว",
             "นาง",
             "นาย",
@@ -94,16 +92,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             "ผู้ช่วยศาสตราจารย์",
             "รองศาสตราจารย์"
         )
-        val genderList =  listOf<String>(
+        val genderList = listOf<String>(
             "ชาย",
             "หญิง",
             "อื่นๆ"
         )
-        val nationList =  listOf<String>(
-            "ชาย",
-            "หญิง",
-            "อื่นๆ"
-        )
+        val nationList = arrayListOf<String>()
 
         private fun bytesToHex(bytes: ByteArray): String {
             val hexChars = CharArray(bytes.size * 2)
@@ -167,6 +161,30 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
 
         setupViews()
+
+        val `is` = resources.openRawResource(R.raw.countries)
+        val reader = BufferedReader(
+            InputStreamReader(`is`, Charset.forName("UTF-8"))
+        )
+        var line = ""
+        val scan = Scanner(`is`)
+        try {
+            while (scan.hasNextLine()) {
+                line = scan.nextLine()
+                val tokens = line.split(",").toTypedArray()
+
+                // Read the data and store it in the WellData POJO.
+                val countriesData = Countries(tokens[0], tokens[1], tokens[2], tokens[3])
+                countriesList.add(countriesData)
+//                Log.d(TAG, "Just Created $countriesData")
+                nationList.add("${tokens[2]}-${tokens[3]}")
+            }
+            nationList.removeAt(0)
+        } catch (e1: IOException) {
+            Log.e(TAG, "Error$line", e1)
+            e1.printStackTrace()
+        }
+
         // Start USB interface
         mSlotNum = 0.toByte()
         mContext = applicationContext
@@ -211,6 +229,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     fun AssetManager.readFile(fileName: String) = open(fileName)
         .bufferedReader()
         .use { it.readText() }
+
 
     //set usb reader to list item
     private fun setReaderSlotView() {
@@ -517,13 +536,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
 
     private fun onOpenButtonSetup() {
-        binding.startBtn!!.isEnabled = false
-        binding.readBtn!!.isEnabled = true
+        binding.startBtn.isEnabled = false
+        binding.readBtn.isEnabled = true
     }
 
     private fun onCloseButtonSetup() {
-        binding.startBtn!!.isEnabled = true
-        binding.readBtn!!.isEnabled = false
+        binding.startBtn.isEnabled = true
+        binding.readBtn.isEnabled = false
     }
 
     //Clear view layout
@@ -603,7 +622,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
         if (v == binding.nationalityEdt) {
 
+
             MaterialDialog(this, BottomSheet(LayoutMode.WRAP_CONTENT)).show {
+                title(text = "Select nationnality here")
                 listItems(items = nationList) { _, index, text ->
                     binding.nationalityEdt.setText(text.toString())
                 }
