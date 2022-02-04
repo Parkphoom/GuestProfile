@@ -7,7 +7,7 @@
     <string name="personNo">Personal No.</string>
     <string name="hint_person">Enter personal number here</string>
     <string name="title_name">Title Name</string>
-    <string name="hint_title">Enter title name here</string>
+    <string name="hint_title">Select title name</string>
     <string name="First_name">First Name</string>
     <string name="hint_firstname">Enter first name here</string>
     <string name="middle_Name">Middle Name</string>
@@ -15,17 +15,27 @@
     <string name="last_name">Last Name</string>
     <string name="hint_lastname">Enter last name here</string>
     <string name="gender">Gender</string>
-    <string name="hint_gender">Enter gender here</string>
+    <string name="hint_gender">Select gender</string>
     <string name="DOB">Date of Birth</string>
     <string name="hint_dob">Enter date of birth here</string>
     <string name="DOE">Date of Expire</string>
     <string name="hint_doe">Enter date of expire here</string>
     <string name="nationality">Nationality</string>
-    <string name="hint_nationality">Enter Nationality here</string>
+    <string name="hint_nationality">Select Nationality</string>
     <string name="address">Address</string>
     <string name="hint_address">Enter address here</string>
     <string name="occupation">Occupation</string>
-    <string name="hint_occupation">Enter occupation here</string>
+    <string name="hint_occupation">Select occupation</string>
+    <string name="from">From</string>
+    <string name="hint_from">Enter from here</string>
+    <string name="Destination">destination</string>
+    <string name="hint_destination">Enter destination here</string>
+    <string name="room_no">Room No</string>
+    <string name="hint_room_no">Enter room number here</string>
+    <string name="room_rate">Room Rate</string>
+    <string name="hint_room_rate">Enter room rate here</string>
+    <string name="check_in">Check in</string>
+    <string name="check_out">Check out</string>
     <string name="next">next</string>
     <string name="read">READ</string>
 
@@ -33,4 +43,19 @@
     <string name="do_not_eject">กรุณาอย่านำบัตรออกจนกว่าจะอ่านเสร็จ</string>
     <string name="submit">submit</string>
     <string name="cancle">cancle</string>
+    <string name="rr3">RR3</string>
+    <string name="delete">delete</string>
+    <string name="save">save</string>
+
+    <string name="text_cancel">Cancel</string>
+    <string name="text_print">Print</string>
+    <string name="text_share">Share</string>
+    <string name="text_generated_file_error">Generated File is null or does not exist!</string>
+    <string name="text_create_test_pdf">Create Test Pdf</string>
+    <string name="text_create_html_pdf">Create Pdf From HTML</string>
+    <string name="text_example">Example</string>
+    <string name="text_edit_html_pdf">Edit HTML Pdf</string>
+    <string name="app_icon_license">App Icon made by Freepik from www.flaticon.com</string>
+    <string name="pdf_icon_license">PDF Icon made by Google from www.flaticon.com</string>
+    <string name="text_create_pdf">Create PDF</string>
 </resources>

@@ -42,6 +42,10 @@ import java.io.*
 import java.nio.charset.Charset
 import java.util.*
 import kotlin.experimental.or
+import android.widget.EditText
+import androidx.core.widget.doAfterTextChanged
+import androidx.lifecycle.ViewModelProviders
+import com.example.guestprofile.Data.DataHolder
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -67,7 +71,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     var mContext: Context? = null
 
     private lateinit var binding: ActivityMainBinding
-
     private var countriesList: ArrayList<Countries> = arrayListOf()
 
     companion object {
@@ -159,13 +162,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
 
-
         setupViews()
 
         val `is` = resources.openRawResource(R.raw.countries)
-        val reader = BufferedReader(
-            InputStreamReader(`is`, Charset.forName("UTF-8"))
-        )
         var line = ""
         val scan = Scanner(`is`)
         try {
@@ -215,6 +214,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     fun setupViews() {
         supportActionBar?.hide()
+        binding.nextBtn.setOnClickListener(this)
         binding.readBtn.setOnClickListener(this)
         binding.startBtn.setOnClickListener(this)
         binding.refreshBtn.setOnClickListener(this)
@@ -223,6 +223,24 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding.nationalityEdt.setOnClickListener(this)
         setupReaderSpinner()
         setReaderSlotView()
+
+        val edtAR = arrayOf(
+//            binding.tmNoEdt,
+//            binding.passportEdt,
+//            binding.personEdt,
+            binding.titleEdt,
+            binding.firstnameEdt,
+            binding.middleEdt,
+            binding.lastnameEdt,
+            binding.genderEdt,
+            binding.dobEdt,
+            binding.doeEdt,
+            binding.nationalityEdt,
+            binding.addressEdt
+        )
+        ontextchange(
+            edtAR
+        )
     }
 
     //read zipcode.json in assets folder
@@ -573,6 +591,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         if (v == binding.readBtn) {
             val dialog = ProgressDialog(this)
             dialog.setTitle(R.string.reading)
+            dialog.setCancelable(false)
             dialog.setMessage(getString(R.string.do_not_eject))
             lifecycleScope.executeAsyncTask(
                 onPreExecute = {
@@ -594,6 +613,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
         if (v == binding.startBtn) {
             openReader()
+        }
+        if (v == binding.nextBtn) {
+            nativeCardInfo?.passportNo = binding.passportEdt.text.toString()
+            nativeCardInfo?.nationality = binding.nationalityEdt.text.toString()
+
+            DataHolder.setCardInfo(nativeCardInfo);
+
+            startActivity(Intent(this, DetailActivity::class.java))
         }
         if (v == binding.refreshBtn) {
             findDevice()
@@ -626,7 +653,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             MaterialDialog(this, BottomSheet(LayoutMode.WRAP_CONTENT)).show {
                 title(text = "Select nationnality here")
                 listItems(items = nationList) { _, index, text ->
-                    binding.nationalityEdt.setText(text.toString())
+                    binding.nationalityEdt.setText(text.toString().split("-").get(1))
                 }
                 positiveButton(R.string.submit)
                 negativeButton(R.string.cancle)
@@ -678,7 +705,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             try {
                 fn_th =
                     String(recByte!!, charset("TIS620")).substring(0, 35).split("#").toTypedArray()
-                var tilteNameTh = fn_th[0] // คำนำหน้า
+                var tilteNameTh = fn_th[0].replace("", "") // คำนำหน้า
                 var firstNameTh = fn_th[1] // ชื่อ
                 var middleNameTh = fn_th[2].replace("", "-") // ว่าง
                 var lastNameTh = fn_th[3].replaceFirst(" ", "") // last name
@@ -720,7 +747,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         4
                     )
                 runOnUiThread {
-                    binding.doeEdt.setText(str_DOB)
+                    binding.dobEdt.setText(str_DOB)
                 }
 
                 nativeCardInfo!!.dateOfBirth = str_DOB
@@ -770,7 +797,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 ) + "/" + strExpire.substring(0, 4)
 //                txtExpire!!.text = "$strExpire"
                 runOnUiThread {
-                    binding.dobEdt.setText(strExpire)
+                    binding.doeEdt.setText(strExpire)
                 }
 
                 nativeCardInfo!!.cardExpiryDate = strExpire
@@ -958,6 +985,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         runOnUiThread {
             binding.imageCard.setImageBitmap(bitmapCard)
         }
+
+
+
 //        var cardimage: MultipartBody.Part? = null
 //
 //        val cardfile = File(this.cacheDir, "image")
@@ -1234,5 +1264,25 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             i++
         }
         return byteArray
+    }
+
+    private fun ontextchange(fields: Array<EditText>) {
+        for (i in fields.indices) {
+            val currentField = fields[i]
+            currentField.doAfterTextChanged {
+                binding.nextBtn.isEnabled = validate(fields)
+            }
+        }
+    }
+
+    private fun validate(fields: Array<EditText>): Boolean {
+        for (i in fields.indices) {
+            val currentField = fields[i]
+
+            if (currentField.text.toString().isEmpty()) {
+                return false
+            }
+        }
+        return true
     }
 }

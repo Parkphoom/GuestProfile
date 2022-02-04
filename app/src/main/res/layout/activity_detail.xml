@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/occupation"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/occupation_edt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@android:color/transparent"
+            android:cursorVisible="false"
+            android:drawableEnd="@drawable/ic_drop_down"
+            android:drawableTint="@color/black"
+            android:focusable="false"
+            android:hint="@string/hint_occupation"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:paddingStart="16dp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/from"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/from_edt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@android:color/transparent"
+            android:hint="@string/hint_from"
+            android:imeOptions="actionNext"
+            android:inputType="textMultiLine"
+            android:paddingStart="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/Destination"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/destination_edt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@android:color/transparent"
+            android:hint="@string/hint_destination"
+            android:imeOptions="actionNext"
+            android:inputType="textMultiLine"
+            android:paddingStart="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/room_no"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/room_no_edt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@android:color/transparent"
+            android:hint="@string/hint_room_no"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:paddingStart="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/room_rate"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/room_rate_edt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@android:color/transparent"
+            android:hint="@string/hint_room_rate"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:paddingStart="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/check_in"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/checkin_edt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@android:color/transparent"
+            android:cursorVisible="false"
+            android:drawableEnd="@drawable/ic_drop_down"
+            android:drawableTint="@color/black"
+            android:focusable="false"
+            android:inputType="text"
+            android:paddingStart="16dp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/check_out"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/checkout_edt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@android:color/transparent"
+            android:cursorVisible="false"
+            android:drawableEnd="@drawable/ic_drop_down"
+            android:drawableTint="@color/black"
+            android:focusable="false"
+            android:inputType="text"
+            android:paddingStart="16dp"
+            android:textColor="@color/black" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/buttonPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="4dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/rr3_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:enabled="false"
+            android:padding="14dp"
+            android:text="@string/rr3" />
+
+        <Button
+            android:id="@+id/del_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:enabled="false"
+            android:padding="14dp"
+            android:text="@string/delete" />
+        <Button
+            android:id="@+id/save_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:enabled="false"
+            android:padding="14dp"
+            android:text="@string/save" />
+    </LinearLayout>
+</RelativeLayout>

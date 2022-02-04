@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "GuestProfile"
 include ':app'
+include ':app', ':pdfcreator'

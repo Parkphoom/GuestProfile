@@ -27,4 +27,8 @@ class NativeCardInfo {
     var address: CardAddress? = null
     var cardCountry: String = ""
 
+    var nationality: String = ""
+    var passportNo: String = ""
+
+
 }

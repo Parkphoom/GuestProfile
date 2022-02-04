@@ -107,7 +107,7 @@
                 android:background="@android:color/transparent"
                 android:hint="@string/hint_tmno"
                 android:imeOptions="actionNext"
-                android:inputType="number"
+                android:inputType="textNoSuggestions"
                 android:paddingStart="16dp" />
 
             <TextView
@@ -128,7 +128,7 @@
                 android:background="@android:color/transparent"
                 android:hint="@string/hint_passport"
                 android:imeOptions="actionNext"
-                android:inputType="number"
+                android:inputType="textNoSuggestions"
                 android:paddingStart="16dp" />
 
             <TextView
